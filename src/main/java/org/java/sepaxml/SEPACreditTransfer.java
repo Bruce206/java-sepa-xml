@@ -28,7 +28,7 @@ public class SEPACreditTransfer extends SEPA {
             XMLNode nodeCdtTrfTxInf = this.nodePmtInf.append("CdtTrfTxInf");
 
             nodeCdtTrfTxInf.append("PmtId")
-                    .append("EndToEndId").value("NOTPROVIDED");
+                    .append("EndToEndId").value(transaction.getEndToEndId());
 
             nodeCdtTrfTxInf.append("Amt").
                     append("InstdAmt")
@@ -39,9 +39,14 @@ public class SEPACreditTransfer extends SEPA {
                     .append("FinInstnId").append("BIC")
                     .value(transaction.getBankAccount().getBIC());
 
-            nodeCdtTrfTxInf.append("Cdtr")
+            XMLNode cdtr = nodeCdtTrfTxInf.append("Cdtr")
                     .append("Nm")
-                    .value(transaction.getBankAccount().getName());
+                    .value(transaction.getBankAccount().getName())
+                    .append("PstlAdr");
+
+            cdtr.append("Ctry").value(transaction.getBankAccount().getCountryIso());
+            cdtr.append("AdrLine").value(transaction.getBankAccount().getAddressLine1());
+            cdtr.append("AdrLine").value(transaction.getBankAccount().getAddressLine2());
 
             nodeCdtTrfTxInf.append("CdtrAcct")
                     .append("Id").append("IBAN")

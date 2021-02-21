@@ -66,14 +66,19 @@ public class SEPADirectDebit extends SEPA {
             nodeMndtRltdInf.append("AmdmntInd")
                     .value("false");
 
-            nodeDrctDbtTxInf.append("DbtrAgt").
-                            append("FinInstnId")
-                            .append("BIC")
-                            .value(transaction.getBankAccount().getBIC());
+            nodeDrctDbtTxInf.append("DbtrAgt")
+                    .append("FinInstnId")
+                    .append("BIC")
+                    .value(transaction.getBankAccount().getBIC());
 
-            nodeDrctDbtTxInf.append("Dbtr")
+            XMLNode dbtr = nodeDrctDbtTxInf.append("Dbtr")
                     .append("Nm")
-                    .value(transaction.getBankAccount().getName());
+                    .value(transaction.getBankAccount().getName())
+                    .append("PstlAdr");
+
+            dbtr.append("Ctry").value(transaction.getBankAccount().getCountryIso());
+            dbtr.append("AdrLine").value(transaction.getBankAccount().getAddressLine1());
+            dbtr.append("AdrLine").value(transaction.getBankAccount().getAddressLine2());
 
             nodeDrctDbtTxInf.append("DbtrAcct").
                     append("Id")

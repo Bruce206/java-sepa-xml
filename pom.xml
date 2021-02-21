@@ -5,12 +5,17 @@
 
     <groupId>com.github.java-sepa-xml</groupId>
     <artifactId>java-sepa-xml</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
         </dependency>
     </dependencies>
 
