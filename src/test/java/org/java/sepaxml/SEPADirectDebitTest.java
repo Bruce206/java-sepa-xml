@@ -54,7 +54,7 @@ public class SEPADirectDebitTest {
         Document read = read(new ByteArrayInputStream(out.toByteArray()));
 
         XPath xPath = XPathFactory.newInstance().newXPath();
-        Double evaluate = (Double) xPath.compile("/Document/CstmrCdtTrfInitn/GrpHdr/CtrlSum").evaluate(read, XPathConstants.NUMBER);
+        Double evaluate = (Double) xPath.compile("/Document/CstmrDrctDbtInitn/GrpHdr/CtrlSum").evaluate(read, XPathConstants.NUMBER);
         assertEquals((Double) 600.0, evaluate);
     }
 
